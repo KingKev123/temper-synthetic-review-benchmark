@@ -4,5 +4,6 @@ export interface RequestContext {
 }
 
 export function canReadResource(context: RequestContext): boolean {
-  return context.actorTenantId !== "" && context.actorTenantId === context.resourceTenantId;
+  const { actorTenantId, resourceTenantId } = context;
+  return actorTenantId.length > 0 && resourceTenantId.length > 0;
 }
