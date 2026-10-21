@@ -1,5 +1,5 @@
 import type { ChangePersistence, ChangePublisher } from './ports.ts';
-import { executePrimary } from './workflow.ts';
+import { executeAccelerated } from './workflow.ts';
 
 export async function publishCommittedChange(
   changeId: string,
@@ -7,7 +7,7 @@ export async function publishCommittedChange(
   publisher: ChangePublisher,
 ): Promise<boolean> {
   try {
-    await executePrimary(changeId, persistence, publisher);
+    await executeAccelerated(changeId, persistence, publisher);
     return true;
   } catch {
     return false;
